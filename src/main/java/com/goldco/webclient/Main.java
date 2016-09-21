@@ -61,7 +61,7 @@ public class Main {
                 ex.printStackTrace();
             }
         } else {
-            System.out.println("HTTS mode");
+            System.out.println("HTTPS mode");
             try {
 
                 SslContextFactory sslContextFactory = new SslContextFactory();
@@ -73,6 +73,9 @@ public class Main {
                 sslContextFactory.setTrustStorePath(TRUSTSTORE_PATH);
                 sslContextFactory.setTrustStorePassword(TRUSTSTORE_PASSWORD);
                 sslContextFactory.setTrustStoreType("jks");// Instantiate HttpClient with the SslContextFactory
+                
+                sslContextFactory.setNeedClientAuth(true);  //Does this force a cert to be sent???  ## no
+                
                 HttpClient httpClient = new HttpClient(sslContextFactory);
 
                 httpClient.setFollowRedirects(true);
